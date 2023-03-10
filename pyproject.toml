@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "snapshot-api"
+version = "0.1.0"
+description = ""
+authors = ["Yevhen Dudka <yevhen.dudka@nixs.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["all"], version = "^0.93.0"}
+redis = "^4.5.1"
+aiofiles = "^23.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.254"
+pytest = "^7.2.2"
+blue = "^0.9.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+select = ["F", "E"]
+extend-select = ["C4", "SIM", "TCH"]
+ignore = []
+show-fixes = true
+target-version = "py311"

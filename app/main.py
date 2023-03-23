@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from routers import snapshots
+
+from routers import router
 
 app = FastAPI(docs_url='/')
-app.include_router(snapshots.router)
+app.include_router(router)

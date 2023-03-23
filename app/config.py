@@ -1,13 +1,18 @@
-from os import PathLike
+from functools import lru_cache
 
 from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    snapshot_chunk_size_in_bytes: int = 4 * 1024
-    snapshot_filename: str | bytes | PathLike = 'resources/snapshot.zip'
-    snapshot_generation_time_in_seconds: int = 30
+    SNAPSHOT_CHUNK_SIZE: int = 4 * 1024
+    SNAPSHOT_FILENAME: str = 'resources/snapshot.zip'
+    SNAPSHOT_GENERATION_TIME: int = 30
 
-    redis_url: str
-    redis_port: int
-    redis_snapshot_ids_key: str = 'snapshot_ids'
+    REDIS_HOST: str
+    REDIS_PORT: int
+    REDIS_SNAPSHOT_KEY: str = 'snapshot:{}'
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()

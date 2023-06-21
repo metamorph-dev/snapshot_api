@@ -27,7 +27,7 @@ async def create(
     return {'id': snapshot_id}
 
 
-@router.get('/{snapshot_id}', response_model=Snapshot)
+@router.get('/{snapshot_id}/', response_model=Snapshot)
 @handle_exceptions()
 async def read(
         snapshot_id: str,
@@ -36,7 +36,7 @@ async def read(
     return {'id': snapshot_id, 'ready': (await service.execute(snapshot_id))}
 
 
-@router.get('/{snapshot_id}/download')
+@router.get('/{snapshot_id}/download/')
 @handle_exceptions()
 async def download(
         snapshot_id: str,
